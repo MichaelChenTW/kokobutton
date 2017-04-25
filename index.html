@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<title>KoKo Button Generator</title>
+<link href="bootstrap.css" rel="stylesheet" type="text/css">
+<script src="jscolor.js"></script>
+<script src="jquery-1.7.2.min.js"></script>
+<style>
+
+
+.btn-koko {
+
+}
+.btn-koko_cancel {
+  background-color: #ffa30f !important;
+  background-repeat: repeat-x;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr="#ffce7f", endColorstr="#ffa30f");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#ffce7f), to(#ffa30f));
+  background-image: -moz-linear-gradient(top, #ffce7f, #ffa30f);
+  background-image: -ms-linear-gradient(top, #ffce7f, #ffa30f);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffce7f), color-stop(100%, #ffa30f));
+  background-image: -webkit-linear-gradient(top, #ffce7f, #ffa30f);
+  background-image: -o-linear-gradient(top, #ffce7f, #ffa30f);
+  background-image: linear-gradient(#ffce7f, #ffa30f);
+  border-color: #ffa30f #ffa30f #f29500;
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.36);
+  -webkit-font-smoothing: antialiased;
+}
+
+.content {
+	margin:10px;
+}
+
+#resultCSS {
+    width: 90%;
+    height:300px;
+}
+</style>
+<script>
+	$(function(){
+		console.log("OK");
+		
+		/*
+		$("#color1").on('change',function(){
+			console.log("color1",$("#color1").val());
+		});
+
+		$("#color2").on('change',function(){
+			console.log("color1",$("#color2").val());
+		});
+		*/
+		updateColor();
+		
+	});
+	
+	function updateColor() {
+		//console.log($(ele.styleElement).attr("id"),$(ele.styleElement).val());
+		//var item = $(ele.styleElement).attr("id");
+		
+		//var color = $(ele.styleElement).val();
+		var colorText = $("#colorText").val();
+		var color1 = $("#color1").val();
+		var color2 = $("#color2").val();
+		
+		//if(item == "color1") {
+				//$("#testKoKoButton").css("background-image","linear-gradient(#"+color1+", #"+color2+")");
+		//}
+		//else if(item == "color2") {
+		//		$("#testKoKoButton").css("background-image","linear-gradient(#"+color1+", #"+color2+")");
+		//}
+		//$("#testKoKoButton").css("background-color","#"+color2+"");
+		//$("#testKoKoButton").css("border-color","#"+color2+"");
+		//$("#testKoKoButton").css("color","white");
+				
+		var resultCSSDict = {};
+		resultCSSDict["background-color"] = ["#"+color2];
+		resultCSSDict["background-repeat"] = ["repeat-x"];
+		resultCSSDict["filter"] = ["progid:dximagetransform.microsoft.gradient(startColorstr='#"+color1+"', endColorstr='#"+color2+"')"];
+		resultCSSDict["background-image"] = [];
+		resultCSSDict["background-image"].push("-khtml-gradient(linear, left top, left bottom, from(#"+color1+"), to(#"+color2+"))");
+		resultCSSDict["background-image"].push("-moz-linear-gradient(top, #"+color1+", #"+color2+")");
+		resultCSSDict["background-image"].push("-ms-linear-gradient(top, #"+color1+", #"+color2+")");
+		resultCSSDict["background-image"].push("-webkit-gradient(linear, left top, left bottom, color-stop(0%, #"+color1+"), color-stop(100%, #"+color2+"))");
+		resultCSSDict["background-image"].push("-webkit-linear-gradient(top, #"+color1+", #"+color2+")");
+		resultCSSDict["background-image"].push("-o-linear-gradient(top, #"+color1+", #"+color2+")");
+		resultCSSDict["background-image"].push("linear-gradient(#"+color1+", #"+color2+")");
+		resultCSSDict["border-color"] = ["#"+color2+" #"+color2+" #"+color2+""];
+		resultCSSDict["color"] = ["#"+colorText];
+		resultCSSDict["text-shadow"] = ["0 -1px 0 rgba(0, 0, 0, 0.39)"];
+		resultCSSDict["-webkit-font-smoothing"] = ["antialiased"];
+		
+		var resultCSSString = "";
+		/*
+		resultCSSString += "background-color: #"+color2+";"+"\n";
+		resultCSSString += "background-repeat: repeat-x;"+"\n";
+		resultCSSString += "filter: progid:dximagetransform.microsoft.gradient(startColorstr=#"+color1+", endColorstr=#"+color2+");"+"\n";
+		resultCSSString += "background-image: -khtml-gradient(linear, left top, left bottom, from(#"+color1+"), to(#"+color2+"));"+"\n";
+		resultCSSString += "background-image: -moz-linear-gradient(top, #"+color1+", #"+color2+");"+"\n";
+		resultCSSString += "background-image: -ms-linear-gradient(top, #"+color1+", #"+color2+");"+"\n";
+		resultCSSString += "background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #"+color1+"), color-stop(100%, #"+color2+"));"+"\n";
+		resultCSSString += "background-image: -webkit-linear-gradient(top, #"+color1+", #"+color2+");"+"\n";
+		resultCSSString += "background-image: -o-linear-gradient(top, #"+color1+", #"+color2+");"+"\n";
+		resultCSSString += "background-image: linear-gradient(#"+color1+", #"+color2+");"+"\n";
+		resultCSSString += "border-color: #"+color2+" #"+color2+" #"+color2+";"+"\n";
+		*/
+		for(var key in resultCSSDict) {
+			var attrs = resultCSSDict[key];
+			for(var i = 0; i < attrs.length; ++i) {
+				resultCSSString += key+": "+attrs[i]+";"+"\n";
+				$("#testKoKoButton").css(key,attrs[i]);
+			}
+		}
+		//console.log(resultCSSString);
+		$("#resultCSS").val(resultCSSString);
+		
+	}
+	
+	
+</script>
+
+</head>
+<body>
+	<div class="content">
+		<div id="testKoKoButton" class="btn">Test Button</div>
+		<hr />
+		Text Color: <input id="colorText" class="jscolor {onFineChange:'updateColor(this)'}" value="ffffff" type="text" />
+		Color 1: <input id="color1" class="jscolor {onFineChange:'updateColor(this)'}" value="678fbb" type="text" />
+		Color 2: <input id="color2" class="jscolor {onFineChange:'updateColor(this)'}" value="345374" type="text" />
+		<br />
+		<textarea id="resultCSS">
+		</textarea>
+	</div>
+</body>
+</html>
+<!--
+  background-color: #345374;
+  background-repeat: repeat-x;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr=#678fbb, endColorstr=#345374);
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#678fbb), to(#345374));
+  background-image: -moz-linear-gradient(top, #678fbb, #345374);
+  background-image: -ms-linear-gradient(top, #678fbb, #345374);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #678fbb), color-stop(100%, #345374));
+  background-image: -webkit-linear-gradient(top, #678fbb, #345374);
+  background-image: -o-linear-gradient(top, #678fbb, #345374);
+  background-image: linear-gradient(#678fbb, #345374);
+  border-color: #345374 #345374 #345374;
+-->
